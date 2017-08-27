@@ -1,9 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'dva'
-import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete, Modal } from 'antd';
+import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete } from 'antd';
 import { config } from 'utils'
 import styles from './index.less'
+import Modal from './Modal'
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -19,6 +20,21 @@ const Login = ({
   // 关联model里面的数据
   const { loginLoading,visible } = login
 
+  // modal组件参数
+  const modalProps = {
+    visible: visible,
+    title: '注册账号',
+    wrapClassName: 'vertical-center-modal',
+    onOk (data) {
+      dispatch({ type: 'login/register', payload: data })
+    },
+    onCancel () {
+      dispatch({
+        type: 'login/hideModal',
+      })
+    },
+  }
+
   function handleOk (e) {
     e.preventDefault();
     validateFieldsAndScroll((errors, values) => {
@@ -30,59 +46,12 @@ const Login = ({
     })
   }
 
-  function handleRegister (e) {
-    e.preventDefault();
-    validateFieldsAndScroll((errors, values) => {
-      if (errors) {
-        return
-      }
-      // 关联model下reducers里面的方法
-      dispatch({ type: 'login/register', payload: values })
-    })
-  }
-
-  /* 注册框 */
-  function handleCancel () {
-    dispatch({
-      type: 'login/hideModal',
-    })
-  }
-
+  /* 显示注册框 */
   function showModal () {
     dispatch({
       type: 'login/showModal',
     })
   }
-
-  const formItemLayout = {
-    labelCol: {
-      xs: { span: 24 },
-      sm: { span: 6 },
-    },
-    wrapperCol: {
-      xs: { span: 24 },
-      sm: { span: 14 },
-    },
-  };
-  const tailFormItemLayout = {
-    wrapperCol: {
-      xs: {
-        span: 24,
-        offset: 0,
-      },
-      sm: {
-        span: 14,
-        offset: 6,
-      },
-    },
-  };
-  const prefixSelector = getFieldDecorator('prefix', {
-    initialValue: '86',
-  })(
-    <Select style={{ width: 60 }}>
-      <Option value="86">+86</Option>
-    </Select>
-  );
 
   return (
     <div className={styles.loginWallpaper}>
@@ -120,115 +89,7 @@ const Login = ({
               <a onClick={showModal}>还没有账号，注册账号！</a>
             </FormItem>
           </Form>
-
-          {/* 注册弹框 */}
-          <Modal
-            visible={visible}
-            title="用户注册"
-            width='480'
-            onOk={handleRegister}
-            onCancel={handleCancel}
-            footer={[
-              <Button key="back" size="large" onClick={handleCancel}>取消</Button>,
-              <Button key="submit" type="primary" size="large" onClick={handleRegister}>
-                注册
-              </Button>,
-            ]}
-            >
-              {/* 注册表单 */}
-              <Form>
-                <FormItem
-                  {...formItemLayout}
-                  label={(
-                    <span>
-                      昵称
-                    </span>
-                  )}
-                  hasFeedback
-                >
-                  {getFieldDecorator('nickname', {
-                    rules: [{ required: true, message: '昵称不能为空！', whitespace: true }],
-                  })(
-                    <Input />
-                  )}
-                </FormItem>
-                <FormItem
-                  {...formItemLayout}
-                  label="邮箱"
-                  hasFeedback
-                >
-                  {getFieldDecorator('email', {
-                    rules: [{
-                      type: 'email', message: '您输入的邮箱格式有误！',
-                    }, {
-                      required: true, message: '邮箱不能为空！',
-                    }],
-                  })(
-                    <Input />
-                  )}
-                </FormItem>
-                <FormItem
-                  {...formItemLayout}
-                  label="密码"
-                  hasFeedback
-                >
-                  {getFieldDecorator('password', {
-                    rules: [{
-                      required: true, message: '密码不能为空！',
-                    }],
-                  })(
-                    <Input type="password" />
-                  )}
-                </FormItem>
-                <FormItem
-                  {...formItemLayout}
-                  label="确认密码"
-                  hasFeedback
-                >
-                  {getFieldDecorator('confirm', {
-                    rules: [{
-                      required: true, message: '请输入确认密码！',
-                    }],
-                  })(
-                    <Input type="password" />
-                  )}
-                </FormItem>
-                <FormItem
-                  {...formItemLayout}
-                  label="手机号码"
-                >
-                  {getFieldDecorator('phone', {
-                    rules: [{ required: true, message: '手机号码不能为空！' }],
-                  })(
-                    <Input addonBefore={prefixSelector} style={{ width: '100%' }} />
-                  )}
-                </FormItem>
-                <FormItem
-                  {...formItemLayout}
-                  label="验证码"
-                >
-                  <Row gutter={8}>
-                    <Col span={12}>
-                      {getFieldDecorator('captcha', {
-                        rules: [{ required: true, message: '请输入您收到的验证码！' }],
-                      })(
-                        <Input size="large" />
-                      )}
-                    </Col>
-                    <Col span={12}>
-                      <Button size="large">获取验证码</Button>
-                    </Col>
-                  </Row>
-                </FormItem>
-                <FormItem {...tailFormItemLayout} style={{ marginBottom: 8 }}>
-                  {getFieldDecorator('同意', {
-                    valuePropName: 'checked',
-                  })(
-                    <Checkbox>我已经阅读了<a href="">用户协议</a></Checkbox>
-                  )}
-                </FormItem>
-              </Form>
-          </Modal>
+          {<Modal {...modalProps} />}
       </div>
     </div>
   )
