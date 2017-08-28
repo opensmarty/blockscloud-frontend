@@ -1,65 +1,10 @@
-# Antd Admin
+# blockscloud-frontend
 
-[![React](https://img.shields.io/badge/react-^15.6.1-brightgreen.svg?style=flat-square)](https://github.com/facebook/react)
-[![Ant Design](https://img.shields.io/badge/ant--design-^2.11.2-yellowgreen.svg?style=flat-square)](https://github.com/ant-design/ant-design)
-[![dva](https://img.shields.io/badge/dva-^1.2.0-orange.svg?style=flat-square)](https://github.com/dvajs/dva)
+积木云前端程序
 
-[![GitHub issues](https://img.shields.io/github/issues/zuiidea/antd-admin.svg?style=flat-square)](https://github.com/zuiidea/antd-admin)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/zuiidea/antd-admin/pulls)
-[![MIT](https://img.shields.io/dub/l/vibe-d.svg?style=flat-square)](http://opensource.org/licenses/MIT)
-[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com)
+# Blockscloud Web OS
 
-演示地址 <http://antd-admin.zuiidea.com>
-
-## 特性
-
--   基于[react](https://github.com/facebook/react)，[ant-design](https://github.com/ant-design/ant-design)，[dva](https://github.com/dvajs/dva)，[Mock](https://github.com/nuysoft/Mock) 企业级后台管理系统最佳实践。
--   基于Antd UI 设计语言，提供后台管理系统常见使用场景。
--   基于[dva](https://github.com/dvajs/dva)动态加载 Model 和路由，按需加载。
--   使用[roadhog](https://github.com/sorrycc/roadhog)本地调试和构建，其中Mock功能实现脱离后端独立开发。
--   浅度响应式设计。
-
-## 更新日志
-
-### 4.3.0
-
-`2017-07-30`
-
--     更新[roadhog](https://github.com/sorrycc/roadhog)至`1.0.0-beta.7`，得益于`webpack@3.4`，编译速度不减。
--     基于使用roadhog的dll插件，开发时编译耗时减半。
--     新增打包时按项目版本号生成文件目录。[#449](https://github.com/zuiidea/antd-admin/issues/449)
--     更新`eslint`，并适当修改了`.eslintrc`。
-
-### 4.2.3
-
-`2017-07-07`
-
--     新增用户按权限访问。[#384](https://github.com/zuiidea/antd-admin/issues/384)
-
-### 4.2.2
-
-`2017-06-01`
-
--     新增用户管理批量删除。[#320](https://github.com/zuiidea/antd-admin/issues/320)
-
-### 4.2.1
-
-`2017-05-12`
-
--     新增IconFont扩展方案,本地使用方案。[#270](https://github.com/zuiidea/antd-admin/issues/270) [Live](http://47.92.30.98:666/UIElement/iconfont)
--     新增常见场景使用loading。 [dva-loading](https://github.com/dvajs/dva-loading)
-
-### 4.2
-
-`2017-04-28`
-
--    修改user相关API使用`Restful`风格。
-- 增加user页面多条件查询。[#266](https://github.com/zuiidea/antd-admin/issues/226)
-- 修复菜单默认高亮。[#201](https://github.com/zuiidea/antd-admin/issues/201)
-
-      [More Change Log](https://github.com/zuiidea/antd-admin/wiki/Change-Log)
-
-## 开发构建
+这个系统从2014年最初的idea到2017年已经有两年半的时间了，时光荏苒。作者是一个php程序员，开发过程中总是为找一个好的、可扩展的后台模板而苦恼，积木云的早期版本使用了芒果云+onethink整合，但碍于芒果云不提供源码以及TP官方对onethink放弃支持，造成了旧版本积木云维护的异常困难。于是作者在2016年用更先进的laravel和vue重写了所有代码。开源不易，请尊重版权！ 
 
 ### 目录结构
 
@@ -96,12 +41,6 @@
 -   routes：页面为单位以文件夹保存，文件夹名首字母小写（特殊除外，如`UIElement`）,文件夹内主文件以`index.js`导出，多文件时可建立`components`文件夹（如`./src/routes/dashboard`），如果有子路由，依次按照路由层次建立文件夹（如`./src/routes/UIElement`）。
 
 ### 快速开始
-
-克隆项目文件:
-
-```bash
-git clone https://github.com/zuiidea/antd-admin.git
-```
 
 进入目录安装依赖:
 
@@ -150,18 +89,20 @@ npm run lint
     git config --global core.autocrlf false
     ```
 
-## 参考
+## 官方支持
 
-用户列表：<https://github.com/dvajs/dva/tree/master/examples/user-dashboard>
+积木云QQ群：4110211
 
-dashboard设计稿：<https://dribbble.com/shots/3108122-Dashboard-Admin> （已征得作者同意）
+github地址:https://github.com/tangtanglove/blockscloud
 
-## 截屏
+coding地址:https://git.coding.net/tangtanglove/blockscloud.git
 
-web
+开发社区：http://www.cloudblocks.cn
 
-![](assets/4.2.1-demo-1.gif)
+运营网站：http://www.blockscloud.com
 
-移动
+作者blog：http://www.ixiaoquan.com
 
-![](assets/4.2.1-demo-2.gif)
+## License
+
+未获商业授权之前，不得将本软件用于商业用途（包括但不限于企业网站、经营性网站、以营利为目或实现盈利的网站）。购买商业授权请QQ:869716224。 不得对本软件或与之关联的商业授权进行出租、出售、抵押或发放子许可证。 禁止在 积木云 的整体或任何部分基础上以发展任何派生版本、修改版本或第三方版本用于重新分发。 如果您未能遵守本协议的条款，您的授权将被终止，所被许可的权利将被收回，并承担相应法律责任。

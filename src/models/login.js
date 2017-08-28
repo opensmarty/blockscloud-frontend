@@ -1,3 +1,4 @@
+// import { message } from 'antd'
 import { routerRedux } from 'dva/router'
 import { queryURL } from 'utils'
 import { login } from 'services/login'
@@ -18,7 +19,7 @@ export default {
       yield put({ type: 'showLoginLoading' })
       const data = yield call(login, payload)
       yield put({ type: 'hideLoginLoading' })
-      if (data.success) {
+      if (data.status=="success") {
         const from = queryURL('from')
         yield put({ type: 'app/query' })
         if (from) {
@@ -27,7 +28,7 @@ export default {
           yield put(routerRedux.push('/dashboard'))
         }
       } else {
-        throw data
+        throw data.msg
       }
     },
   },
