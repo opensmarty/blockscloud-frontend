@@ -1,0 +1,32 @@
+{
+  "entry": "src/index.js",
+  "env": {
+    "development": {
+      "extraBabelPlugins": [
+        "dva-hmr",
+        "transform-runtime",
+        ["import", { "libraryName": "antd", "style": "css" }]
+      ],
+      "proxy": {
+        "/api": {
+          "target": "http://www.develop.com/",
+          "changeOrigin": true,
+          "pathRewrite": { "/api" : "" }
+        }
+      }
+    },
+    "production": {
+      "extraBabelPlugins": [
+        "transform-runtime",
+        ["import", { "libraryName": "antd", "style": "css" }]
+      ],
+      "proxy": {
+        "/center": {
+          "target": "http://www.develop.com/",
+          "changeOrigin": true,
+          "pathRewrite": { "^/center" : "" }
+        }
+      }
+    }
+  }
+}
